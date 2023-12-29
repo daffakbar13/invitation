@@ -1,95 +1,69 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
+
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
+
+import React from 'react'
 
 export default function Home() {
+  const [showAlert, setShowAlert] = React.useState(true)
+
+  React.useEffect(() => {
+    const handlerEvent = () => {
+      if (document.fullscreenElement) {
+        document.exitFullscreen()
+      }
+    }
+    document.onclick = handlerEvent
+    document.ontouchstart = handlerEvent
+    const timeout = setTimeout(() => {
+      setShowAlert(false)
+    }, 1000 * 3)
+
+    return () => clearTimeout(timeout)
+  })
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div>
+      <video
+        width="100%"
+        loop
+        muted
+        autoPlay
+        onClick={(e) => {
+          e.preventDefault()
+          document.documentElement.requestFullscreen()
+          e.currentTarget.muted = false
+        }}
+      >
+        <source src="/assets/videos/dummy_3d.mp4" type="video/mp4" />
+      </video>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          position: 'fixed',
+          top: 0,
+          bottom: 0,
+          right: 0,
+          left: 0,
+          zIndex: 1,
+          padding: '20vh 0',
+          pointerEvents: 'none',
+          opacity: showAlert ? 1 : 0,
+          transition: 'all ease .9s',
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: 'red',
+            height: 'max-content',
+          }}
+        >
+          Scroll to see invitation details
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   )
 }
