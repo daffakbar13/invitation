@@ -1,5 +1,3 @@
-'use client'
-
 import grey from '@mui/material/colors/grey'
 import red from '@mui/material/colors/red'
 import createTheme from '@mui/material/styles/createTheme'
@@ -10,7 +8,7 @@ import globalStyles from '../globalStyles'
 const theme = createTheme({
   palette: {
     background: {
-      default: '#ffffff',
+      default: '#002E51',
     },
     primary: {
       main: '#006491',

@@ -5,8 +5,8 @@ const globalStyles: SxProps = {
   '& html, body': {
     margin: 0,
     padding: 0,
-    minWidth: '100vw',
-    minHeight: '100vh',
+    scrollBehavior: 'smooth',
+    color: 'white',
   },
   '::-webkit-scrollbar': {
     width: 0,
