@@ -1,8 +1,7 @@
 import { MongoClient } from 'mongodb'
 
 export default async function database() {
-  const url = 'mongodb+srv://daffaraihan03:daffakbar354@daffa.loofr2k.mongodb.net/'
-  const client = new MongoClient(url)
+  const client = new MongoClient(String(process.env.NEXT_PUBLIC_MONGODB_URL))
 
   await client.connect()
 
