@@ -7,7 +7,7 @@ const Cover = styled(Box)(() => ({
   width: '100%',
   height: '100%',
   position: 'absolute',
-  backgroundImage: `url('${images.cover.src}')`,
+  backgroundImage: `url('${images.bg1.src}')`,
   backgroundPosition: 'center',
   backgroundSize: 'cover',
   zIndex: -1,

@@ -22,6 +22,11 @@ const useGlobalStore = create<UseGlobalStore>((set, get) => ({
       Component: dynamic(() => import('@/core/screens/ScreenB')),
       Icon: dynamic(() => import('@mui/icons-material/FavoriteRounded')),
     },
+    {
+      title: 'Acara',
+      Component: dynamic(() => import('@/core/screens/ScreenD')),
+      Icon: dynamic(() => import('@mui/icons-material/FavoriteRounded')),
+    },
   ],
   activeScreen: 0,
   touchStartClientY: 0,

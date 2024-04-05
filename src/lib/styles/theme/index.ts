@@ -8,10 +8,10 @@ import globalStyles from '../globalStyles'
 const theme = createTheme({
   palette: {
     background: {
-      default: '#002E51',
+      default: 'white',
     },
     primary: {
-      main: '#006491',
+      main: '#4A5A74',
     },
     error: {
       main: red[900],

@@ -6,7 +6,7 @@ const globalStyles: SxProps = {
     margin: 0,
     padding: 0,
     scrollBehavior: 'smooth',
-    color: 'white',
+    color: '#4A5A74',
   },
   '::-webkit-scrollbar': {
     width: 0,

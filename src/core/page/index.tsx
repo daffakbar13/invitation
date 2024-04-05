@@ -4,8 +4,8 @@ import React from 'react'
 
 import Cover from '@/lib/components/Cover'
 import Navbar from '@/lib/components/Navbar'
-import Particles from '@/lib/components/Particles'
-import ScreenSpring from '@/lib/components/ScreenSpring'
+// import Particles from '@/lib/components/Particles'
+// import ScreenSpring from '@/lib/components/ScreenSpring'
 import useGlobalStore from '@/lib/hooks/useGlobalStore'
 import UsersService from '@/lib/services/users/users.service'
 
@@ -34,9 +34,9 @@ const Page: NextPage = () => {
   return (
     <>
       <Box id="container" onWheel={onWheel} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-        <Particles />
+        {/* <Particles /> */}
         <Cover />
-        <ScreenSpring />
+        {/* <ScreenSpring /> */}
         {isSuccess && <ActiveScreen />}
       </Box>
       {Boolean(activeScreen) && <Navbar />}

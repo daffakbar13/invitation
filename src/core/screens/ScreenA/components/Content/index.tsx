@@ -40,27 +40,56 @@ const Content: React.FC = () => {
   return (
     <animated.div style={style}>
       {isSuccess && (
-        <Stack gap={2} padding={(e) => e.spacing(12, 4)} borderRadius={24} border="1px solid">
-          <Typography fontWeight="bold">Rabu, 12 Juni 2024</Typography>
-          <Image src={images.flower.src} alt="flower" width={250} height={150} />
-          <Box>
-            <Typography className={fonts.allura.className} fontSize="42px !important">
-              {data.cpp.shortName} & {data.cpw.shortName}
-            </Typography>
+        <Stack
+          gap={1}
+          width={300}
+          padding={(e) => e.spacing(1, 1, 10, 1)}
+          borderRadius={24}
+          boxShadow="0px 0px 10px 0px rgba(0, 0, 0, 0.12)"
+          sx={{ backgroundColor: '#FFFFFF69' }}
+        >
+          <Box
+            height={360}
+            borderRadius="192px 192px 0 0"
+            sx={{
+              backgroundImage: `url(${images.gedeBiru1.src})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: '500px',
+              backgroundPosition: 'center -270px',
+            }}
+          >
+            <Box
+              width="100%"
+              height="100%"
+              sx={{ backgroundImage: 'linear-gradient(180deg, #44546E00 36%, #44546E 100%)' }}
+            ></Box>
           </Box>
           <Box>
+            <Typography
+              className={fonts.philosopher.className}
+              fontSize="36px !important"
+              color="goldenrod"
+            >
+              Alvina & Daffa
+            </Typography>
+          </Box>
+          <Stack gap={2}>
             <Typography fontSize={12}>
               Kepada Yth: <br />
               Bapak/Ibu/Saudara/i
             </Typography>
-            <Typography fontWeight="bold">Nama Tamu</Typography>
-          </Box>
-          <Box>
-            <Button onClick={onOpenInvitation}>
-              <CardGiftcardRoundedIcon /> &nbsp; Buka Undangan
-            </Button>
-          </Box>
-          <Typography fontSize={12}>* Mohon maaf bila ada kesalahan nama dan gelar</Typography>
+            <Typography className={fonts.caveat.className} fontSize={26} fontWeight="bold">
+              Illa Laila
+            </Typography>
+            <Box>
+              <Button onClick={onOpenInvitation}>
+                <CardGiftcardRoundedIcon /> &nbsp; Buka Undangan
+              </Button>
+            </Box>
+            <Typography fontSize={10}>
+              * Mohon maaf bila <br /> ada kesalahan nama dan gelar
+            </Typography>
+          </Stack>
         </Stack>
       )}
     </animated.div>

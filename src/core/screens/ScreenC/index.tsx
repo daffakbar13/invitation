@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { animated, config, useSpring } from '@react-spring/web'
@@ -29,22 +30,36 @@ const ScreenC: NextPage = () => {
   return (
     <>
       {isSuccess && (
-        <Screen gap={4}>
+        <Screen
+          gap={8}
+          sx={{
+            backgroundImage: `url(${images.bg2.src})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'bottom',
+            color: 'white',
+          }}
+        >
           <animated.div style={circle}>
             <Stack
               justifyContent="center"
               alignItems="center"
-              width={240}
-              height={240}
-              sx={{ backgroundImage: `url('${images.circle.src}')`, backgroundSize: 'cover' }}
+              width={180}
+              height={180}
+              sx={{
+                backgroundImage: `url('${images.bb.src}')`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'contain',
+                backgroundPosition: 'center',
+              }}
             >
-              <Typography className={fonts.allura.className} fontSize={42} fontWeight="bold">
-                D /A
+              <Typography className={fonts.philosopher.className} fontSize={52} fontWeight="bold">
+                A & D
               </Typography>
-              <Typography>12 / 06 / 2024</Typography>
+              {/* <Typography>12 / 06 / 2024</Typography> */}
             </Stack>
           </animated.div>
-          <Stack gap={4} width="80%">
+          <Stack gap={4} width="80%" fontStyle="italic">
             <animated.div style={terjemah}>
               <Typography>
                 Dan di antara tanda-tanda kekuasaan-Nva ialah Dia menciptakan untukmu isteri-isteri
@@ -54,7 +69,7 @@ const ScreenC: NextPage = () => {
               </Typography>
             </animated.div>
             <animated.div style={suratAyat}>
-              <Typography>(Ar-Rum: 21)</Typography>
+              <Typography>~ Ar-Rum 21 ~</Typography>
             </animated.div>
           </Stack>
         </Screen>
