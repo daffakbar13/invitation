@@ -1,9 +1,18 @@
-import { Allura, Caveat, Philosopher } from 'next/font/google'
+import { Newsreader } from 'next/font/google'
+import localFont from 'next/font/local'
 
-const allura = Allura({ weight: '400', subsets: ['latin'] })
-const philosopher = Philosopher({ weight: '400', subsets: ['latin'] })
-const caveat = Caveat({ weight: '400', subsets: ['latin'] })
+const newsReader = Newsreader({ weight: '400', subsets: ['latin'] })
+const edensor = localFont({ src: './edensor.woff2' })
+const bodebeck = localFont({ src: './bodebeck.woff2' })
+const analogue = localFont({ src: './analogue.woff2' })
+const strawberryCupcakes = localFont({ src: './strawberry-cupcakes.woff2' })
 
-const fonts = { allura, philosopher, caveat }
+const fonts = {
+  edensor,
+  bodebeck,
+  analogue,
+  newsReader,
+  strawberryCupcakes,
+}
 
 export default fonts

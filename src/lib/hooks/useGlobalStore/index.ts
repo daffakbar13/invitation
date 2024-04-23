@@ -23,9 +23,24 @@ const useGlobalStore = create<UseGlobalStore>((set, get) => ({
       Icon: dynamic(() => import('@mui/icons-material/FavoriteRounded')),
     },
     {
-      title: 'Acara',
+      title: 'Waktu',
       Component: dynamic(() => import('@/core/screens/ScreenD')),
-      Icon: dynamic(() => import('@mui/icons-material/FavoriteRounded')),
+      Icon: dynamic(() => import('@mui/icons-material/HourglassEmptyRounded')),
+    },
+    {
+      title: 'Acara',
+      Component: dynamic(() => import('@/core/screens/ScreenE')),
+      Icon: dynamic(() => import('@mui/icons-material/CalendarMonthRounded')),
+    },
+    {
+      title: 'Galeri',
+      Component: dynamic(() => import('@/core/screens/ScreenF')),
+      Icon: dynamic(() => import('@mui/icons-material/CollectionsRounded')),
+    },
+    {
+      title: 'Galeri',
+      Component: dynamic(() => import('@/core/screens/ScreenG')),
+      Icon: dynamic(() => import('@mui/icons-material/CollectionsRounded')),
     },
   ],
   activeScreen: 0,

@@ -66,19 +66,20 @@ const Content: React.FC = () => {
           </Box>
           <Box>
             <Typography
-              className={fonts.philosopher.className}
-              fontSize="36px !important"
-              color="goldenrod"
+              className={fonts.analogue.className}
+              fontSize={35}
+              color="#D7AC64"
+              sx={{ textShadow: '1px 1px 1px white' }}
             >
               Alvina & Daffa
             </Typography>
           </Box>
           <Stack gap={2}>
-            <Typography fontSize={12}>
+            <Typography className={fonts.bodebeck.className} fontSize={14} fontWeight="bold">
               Kepada Yth: <br />
               Bapak/Ibu/Saudara/i
             </Typography>
-            <Typography className={fonts.caveat.className} fontSize={26} fontWeight="bold">
+            <Typography className={fonts.analogue.className} fontSize={26}>
               Illa Laila
             </Typography>
             <Box>
@@ -86,7 +87,7 @@ const Content: React.FC = () => {
                 <CardGiftcardRoundedIcon /> &nbsp; Buka Undangan
               </Button>
             </Box>
-            <Typography fontSize={10}>
+            <Typography className={fonts.bodebeck.className} fontSize={12} fontWeight="bold">
               * Mohon maaf bila <br /> ada kesalahan nama dan gelar
             </Typography>
           </Stack>

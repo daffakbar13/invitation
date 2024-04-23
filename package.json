@@ -20,6 +20,7 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.0.3",
     "axios": "^1.6.5",
+    "dayjs": "^1.11.10",
     "humps": "^2.0.1",
     "mongodb": "^6.3.0",
     "next": "14.0.4",

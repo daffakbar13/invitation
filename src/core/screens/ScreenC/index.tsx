@@ -53,15 +53,14 @@ const ScreenC: NextPage = () => {
                 backgroundPosition: 'center',
               }}
             >
-              <Typography className={fonts.philosopher.className} fontSize={52} fontWeight="bold">
+              <Typography className={fonts.edensor.className} fontSize={50}>
                 A & D
               </Typography>
-              {/* <Typography>12 / 06 / 2024</Typography> */}
             </Stack>
           </animated.div>
-          <Stack gap={4} width="80%" fontStyle="italic">
+          <Stack gap={4} width="80%">
             <animated.div style={terjemah}>
-              <Typography>
+              <Typography className={fonts.bodebeck.className}>
                 Dan di antara tanda-tanda kekuasaan-Nva ialah Dia menciptakan untukmu isteri-isteri
                 dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan
                 dijadikan-Nya diantaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu
@@ -69,7 +68,9 @@ const ScreenC: NextPage = () => {
               </Typography>
             </animated.div>
             <animated.div style={suratAyat}>
-              <Typography>~ Ar-Rum 21 ~</Typography>
+              <Typography className={fonts.bodebeck.className} fontWeight="bold">
+                ~ Ar-Rum 21 ~
+              </Typography>
             </animated.div>
           </Stack>
         </Screen>

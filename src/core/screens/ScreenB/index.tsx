@@ -13,12 +13,12 @@ import UsersService from '@/lib/services/users/users.service'
 const ScreenB: NextPage = () => {
   const { data, isSuccess } = UsersService.GetBride.useQuery()
   const [animate, setAnimate] = React.useState(false)
-  const cpp = useSpring({
+  const cpw = useSpring({
     opacity: animate ? 1 : 0,
     translateY: animate ? 0 : -200,
     config: config.molasses,
   })
-  const cpw = useSpring({
+  const cpp = useSpring({
     opacity: animate ? 1 : 0,
     translateY: animate ? 0 : 200,
     config: config.molasses,
@@ -44,7 +44,7 @@ const ScreenB: NextPage = () => {
               <>
                 <Box key={i} width="80%">
                   <animated.div style={isMale ? cpp : cpw}>
-                    <Stack key={i} width="100%" alignItems="center">
+                    <Stack key={i} width="100%" alignItems="center" gap={1}>
                       <Box
                         width={140}
                         height={180}
@@ -64,24 +64,31 @@ const ScreenB: NextPage = () => {
                           }}
                         ></Box>
                       </Box>
-                      {/* <Typography className={fonts.philosopher.className} fontSize={42}>
-                        - {current.shortName} -
-                      </Typography> */}
-                      <Typography fontSize={28} fontWeight="bold">
+                      <Typography className={fonts.analogue.className} fontSize={30}>
                         {current.fullName}
                       </Typography>
                       <Box marginTop={2}>
-                        <Typography fontSize={14}>
+                        <Typography
+                          className={fonts.bodebeck.className}
+                          fontSize={14}
+                          fontWeight="bold"
+                        >
                           {isMale ? 'Putra' : 'Putri'} ke - {current.childOrder}
                         </Typography>
-                        <Typography fontSize={14} fontWeight="bold">
+                        <Typography
+                          className={fonts.bodebeck.className}
+                          fontSize={14}
+                          fontWeight="bold"
+                        >
                           {(['father', 'mother'] as const)
                             .map((parent) => {
                               const { isAlm, name } = current[parent]
                               const isFather = parent === 'father'
-                              return [isAlm ? '(Alm)' : null, isFather ? 'Bpk.' : 'Ibu', name].join(
-                                ' ',
-                              )
+                              return [
+                                isAlm ? '(Alm.)' : null,
+                                isFather ? 'Bpk.' : 'Ibu',
+                                name,
+                              ].join(' ')
                             })
                             .join(' & ')}
                         </Typography>
