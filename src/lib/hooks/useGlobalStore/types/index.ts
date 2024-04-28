@@ -11,6 +11,8 @@ interface States {
 }
 
 interface Mutations {
+  openInvitation(): void
+  closeInvitation(): void
   setIsFullScreen(isFullScreen: boolean): void
   setActiveScreen(activeScreen: number): void
   onChangeActiveScreen(toNext: boolean): void

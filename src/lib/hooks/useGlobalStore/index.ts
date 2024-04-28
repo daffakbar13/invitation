@@ -45,10 +45,17 @@ const useGlobalStore = create<UseGlobalStore>((set, get) => ({
   ],
   activeScreen: 0,
   touchStartClientY: 0,
+  openInvitation() {
+    set({ isOpenedInvitation: true })
+  },
+  closeInvitation() {
+    set({ isOpenedInvitation: false })
+  },
   setIsFullScreen(isFullScreen) {
     set({ isFullScreen })
   },
   setActiveScreen(activeScreen) {
+    get().openInvitation()
     set({ activeScreen, isOpenedInvitation: true })
   },
   onChangeActiveScreen(toNext) {

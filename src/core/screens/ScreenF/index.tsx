@@ -1,126 +1,111 @@
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import { animated, config, useSpring } from '@react-spring/web'
+import { motion } from 'framer-motion'
 import { NextPage } from 'next'
+import Image from 'next/image'
 import React from 'react'
 
 import fonts from '@/assets/fonts'
 import images from '@/assets/images'
-import Screen from '@/lib/components/Screen'
+import Section from '@/lib/components/Section'
 
-const ScreenF: NextPage = () => {
-  const [animate, setAnimate] = React.useState(false)
-  const card = useSpring({
-    scale: animate ? 1 : 0.6,
-    config: config.molasses,
-  })
-  const header = useSpring({
-    translateY: animate ? 0 : -100,
-    config: config.molasses,
-  })
+const Card = ({ children }: React.PropsWithChildren) => (
+  <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1.2 }}>
+    {children}
+  </motion.div>
+)
 
-  React.useEffect(() => setAnimate(true))
-
-  return (
-    <Screen
-      justifyContent="start"
+const ScreenF: NextPage = () => (
+  <Section
+    justifyContent="start"
+    gap={2}
+    paddingX={2}
+    paddingY={4}
+    sx={{
+      backgroundImage: `linear-gradient(180deg, #FFFFFF94 0%, #ffffffb5 100%), url(${images.bg3.src})`,
+      backgroundRepeat: 'repeat-y',
+      backgroundPosition: 'bottom center',
+    }}
+  >
+    <motion.div
+      initial={{ translateY: -50 }}
+      whileInView={{ translateY: 0 }}
+      transition={{ duration: 1.2 }}
+    >
+      <Typography
+        className={fonts.analogue.className}
+        color="#D5AF6F"
+        fontSize={38}
+        sx={{ textShadow: '1px 1px 1px white' }}
+      >
+        Gallery
+      </Typography>
+    </motion.div>
+    <Stack
       gap={1}
-      paddingX={2}
-      paddingY={2}
+      flex={1}
+      width="100%"
       sx={{
-        backgroundImage: `linear-gradient(180deg, #FFFFFF94 0%, #ffffffb5 100%), url(${images.bg3.src})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'bottom center',
+        '> *': { gap: 1 },
+        '> * > *': { flex: 1 },
+        img: {
+          width: '100%',
+          height: 'auto',
+          borderRadius: 0.5,
+          objectFit: 'cover',
+          aspectRatio: '191/286',
+          '&[alt="biru landscape"], &[alt="jawa landscape"]': { aspectRatio: 'unset' },
+        },
       }}
     >
-      <animated.div style={header}>
-        <Typography className={fonts.analogue.className} color="#D5AF6F" fontSize={30}>
-          Gallery
-        </Typography>
-      </animated.div>
-      <Stack
-        gap={1}
-        flex={1}
-        width="100%"
-        sx={{
-          '> * > *': { flex: 1 },
-          '> * > * > *': {
-            height: '100%',
-            borderRadius: 0.5,
-          },
-        }}
-      >
-        <Box display="flex" gap={1} flexBasis="100%">
-          <animated.div style={card}>
-            <Box
-              sx={{
-                backgroundImage: `url(${images.biru1.src})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center bottom',
-              }}
-            />
-          </animated.div>
-          <animated.div style={card}>
-            <Box
-              sx={{
-                backgroundImage: `url(${images.biru2.src})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center bottom',
-              }}
-            />
-          </animated.div>
-        </Box>
-        <Box display="flex" flexBasis="30%">
-          <animated.div style={card}>
-            <Box
-              sx={{
-                backgroundImage: `url(${images.biruLandscape.src})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            />
-          </animated.div>
-        </Box>
-        <Box display="flex" gap={1} flexBasis="70%">
-          <animated.div style={card}>
-            <Box
-              sx={{
-                backgroundImage: `url(${images.biru3.src})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center bottom',
-              }}
-            />
-          </animated.div>
-          <animated.div style={card}>
-            <Box
-              sx={{
-                backgroundImage: `url(${images.biru4.src})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center bottom',
-              }}
-            />
-          </animated.div>
-          <animated.div style={card}>
-            <Box
-              sx={{
-                backgroundImage: `url(${images.biru5.src})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center bottom',
-              }}
-            />
-          </animated.div>
-        </Box>
-      </Stack>
-    </Screen>
-  )
-}
+      <Box display="flex">
+        <Card>
+          <Image {...images.biru1} alt="biru 1" />
+        </Card>
+        <Card>
+          <Image {...images.biru2} alt="biru 2" />
+        </Card>
+      </Box>
+      <Box display="flex" flexBasis="30%">
+        <Card>
+          <Image {...images.biruLandscape} alt="biru landscape" />
+        </Card>
+      </Box>
+      <Box display="flex">
+        <Card>
+          <Image {...images.biru3} alt="biru 3" />
+        </Card>
+        <Card>
+          <Image {...images.biru4} alt="biru 4" />
+        </Card>
+        <Card>
+          <Image {...images.biru5} alt="biru 5" />
+        </Card>
+      </Box>
+      <Box display="flex">
+        <Card>
+          <Image {...images.jawa1} alt="jawa 1" />
+        </Card>
+        <Card>
+          <Image {...images.jawa2} alt="jawa 2" />
+        </Card>
+      </Box>
+      <Box display="flex" flexBasis="40%">
+        <Card>
+          <Image {...images.jawaLandscape} alt="jawa landscape" />
+        </Card>
+      </Box>
+      <Box display="flex">
+        <Card>
+          <Image {...images.jawa3} alt="jawa 3" />
+        </Card>
+        <Card>
+          <Image {...images.jawa4} alt="jawa 4" />
+        </Card>
+      </Box>
+    </Stack>
+  </Section>
+)
 
 export default ScreenF

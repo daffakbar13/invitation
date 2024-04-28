@@ -25,6 +25,9 @@ const theme = createTheme({
   },
   shape: { borderRadius: 8 },
   typography: {
+    allVariants: {
+      fontSize: 14,
+    },
     fontSize: 14,
   },
   components: {
