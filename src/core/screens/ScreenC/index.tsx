@@ -11,7 +11,7 @@ import Section from '@/lib/components/Section'
 const ScreenC: NextPage = () => (
   <Section
     gap={8}
-    minHeight="100vh"
+    paddingY={8}
     sx={{
       backgroundImage: `url(${images.bg2.src})`,
       backgroundRepeat: 'no-repeat',

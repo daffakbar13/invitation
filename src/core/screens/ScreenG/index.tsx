@@ -1,9 +1,16 @@
 import CardGiftcardRoundedIcon from '@mui/icons-material/CardGiftcardRounded'
+import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded'
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded'
+import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import MenuItem from '@mui/material/MenuItem'
+import Select from '@mui/material/Select'
 import Stack from '@mui/material/Stack'
+import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import { motion } from 'framer-motion'
 import { NextPage } from 'next'
 import Image from 'next/image'
@@ -13,7 +20,9 @@ import fonts from '@/assets/fonts'
 import images from '@/assets/images'
 import Section from '@/lib/components/Section'
 
-const ScreenE: NextPage = () => (
+dayjs.extend(relativeTime)
+
+const ScreenG: NextPage = () => (
   <Section
     gap={3}
     paddingX={3}
@@ -23,6 +32,7 @@ const ScreenE: NextPage = () => (
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundPosition: 'bottom',
+      '> *': { width: '100%' },
     }}
   >
     <motion.div
@@ -118,7 +128,9 @@ const ScreenE: NextPage = () => (
                   <Box alignSelf="end" marginTop={1}>
                     <Button
                       size="small"
-                      onClick={() => navigator.clipboard?.writeText(e.cardNumber.trim())}
+                      onClick={() =>
+                        navigator.clipboard?.writeText(e.cardNumber.replaceAll(' ', ''))
+                      }
                     >
                       <Box display="flex" gap={0.5} alignItems="center">
                         <ContentCopyRoundedIcon sx={{ fontSize: 12 }} />
@@ -177,6 +189,7 @@ const ScreenE: NextPage = () => (
         gap={2}
         borderRadius={4}
         paddingY={5}
+        paddingX={3}
         sx={{
           backgroundImage: `linear-gradient(180deg, #FFFFFF94 0%, #ffffffb5 100%), url(${images.bg3.src})`,
           backgroundRepeat: 'no-repeat',
@@ -195,9 +208,58 @@ const ScreenE: NextPage = () => (
         <Typography className={fonts.bodebeck.className} fontWeight="bold" maxWidth="80%">
           Berikan ucapan harapan dan do’a kepada kedua mempelai
         </Typography>
+        <TextField id="standard-basic" variant="filled" placeholder="Nama" fullWidth />
+        <TextField id="standard-basic" variant="filled" placeholder="Ucapan" fullWidth multiline />
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          defaultValue="hadir"
+          fullWidth
+          placeholder="Konfirmasi Kehadiran"
+          size="small"
+          inputProps={{ 'aria-label': 'Without label' }}
+          sx={{ textAlign: 'left' }}
+          displayEmpty
+        >
+          <MenuItem value="hadir">Hadir</MenuItem>
+          <MenuItem value="tidak hadir">Tidak Hadir</MenuItem>
+          <MenuItem value="bingung">Masih Bingung</MenuItem>
+        </Select>
+        <Button fullWidth>Kirim</Button>
+        <Stack gap={1} width="100%" borderRadius={2} maxHeight={300} overflow="scroll">
+          {new Array(10).fill(0).map((_, i) => (
+            <Stack
+              key={i}
+              borderRadius={2}
+              padding={2}
+              textAlign="left"
+              sx={{ backgroundColor: 'white' }}
+            >
+              <Typography
+                className={fonts.arimaMadurai.className}
+                fontSize={12}
+                fontWeight="bold"
+                marginBottom={1}
+              >
+                Anonymous &nbsp;
+                {i % 2 === 0 ? (
+                  <CheckCircleOutlineRoundedIcon fontSize="inherit" color="success" />
+                ) : (
+                  <HighlightOffRoundedIcon fontSize="inherit" color="error" />
+                )}
+              </Typography>
+              <Typography className={fonts.arimaMadurai.className} fontSize={12}>
+                Happy wedding bestie🤗😍 akhirnyaaa yahhhh im happy for u guys
+              </Typography>
+              <Typography className={fonts.arimaMadurai.className} fontSize={10} textAlign="right">
+                {dayjs('2024-05-01').fromNow()}
+              </Typography>
+            </Stack>
+          ))}
+        </Stack>
       </Stack>
     </motion.div>
   </Section>
 )
 
-export default ScreenE
+export default ScreenG

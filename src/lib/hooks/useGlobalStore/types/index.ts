@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import { NextComponentType, NextPage } from 'next'
+import { StaticImageData } from 'next/image'
 
 interface States {
   isOpenedInvitation: boolean
@@ -8,6 +9,7 @@ interface States {
   Screens: { title: string; Component: NextPage; Icon: NextComponentType }[]
   activeScreen: number
   touchStartClientY: number
+  previewGallery: null | StaticImageData
 }
 
 interface Mutations {
@@ -19,6 +21,8 @@ interface Mutations {
   onWheel(e: React.WheelEvent<HTMLDivElement>): void
   onTouchStart(e: React.TouchEvent<HTMLDivElement>): void
   onTouchEnd(e: React.TouchEvent<HTMLDivElement>): void
+  openPreviewGallery(img: StaticImageData): () => void
+  closePreviewGallery(): void
 }
 
 export default interface UseGlobalStore extends States, Mutations {}

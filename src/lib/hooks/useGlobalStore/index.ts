@@ -45,6 +45,7 @@ const useGlobalStore = create<UseGlobalStore>((set, get) => ({
   ],
   activeScreen: 0,
   touchStartClientY: 0,
+  previewGallery: null,
   openInvitation() {
     set({ isOpenedInvitation: true })
   },
@@ -84,6 +85,14 @@ const useGlobalStore = create<UseGlobalStore>((set, get) => ({
     if (touchStartClientY !== clientY) {
       onChangeActiveScreen(touchStartClientY > clientY)
     }
+  },
+  openPreviewGallery(img) {
+    return () => {
+      set({ previewGallery: img })
+    }
+  },
+  closePreviewGallery() {
+    set({ previewGallery: null })
   },
 }))
 

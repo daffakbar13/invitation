@@ -128,6 +128,13 @@ const theme = createTheme({
         }),
       },
     },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'white !important',
+        },
+      },
+    },
     MuiInputLabel: {
       defaultProps: {
         shrink: true,

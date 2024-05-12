@@ -13,7 +13,7 @@ import Section from '@/lib/components/Section'
 import useGlobalStore from '@/lib/hooks/useGlobalStore'
 
 const ScreenA: NextPage = () => {
-  const { setActiveScreen } = useGlobalStore()
+  const { isOpenedInvitation, setActiveScreen } = useGlobalStore()
 
   function onOpenInvitation() {
     if (document.body.requestFullscreen) {
@@ -35,6 +35,9 @@ const ScreenA: NextPage = () => {
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center bottom',
+        ...(isOpenedInvitation && {
+          minHeight: '100vh',
+        }),
       }}
     >
       <Box
@@ -54,20 +57,20 @@ const ScreenA: NextPage = () => {
       >
         <Stack
           gap={1}
-          width={300}
+          width={280}
           padding={(e) => e.spacing(1, 1, 10, 1)}
           borderRadius={24}
           boxShadow="0px 0px 10px 0px rgba(0, 0, 0, 0.12)"
           sx={{ backgroundColor: '#FFFFFF69' }}
         >
           <Box
-            height={360}
+            height={320}
             borderRadius="192px 192px 0 0"
             sx={{
-              backgroundImage: `url(${images.gedeBiru1.src})`,
+              backgroundImage: `url(${images.biru3.src})`,
               backgroundRepeat: 'no-repeat',
-              backgroundSize: '500px',
-              backgroundPosition: 'center -270px',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center bottom',
             }}
           >
             <Box
@@ -94,11 +97,13 @@ const ScreenA: NextPage = () => {
             <Typography className={fonts.analogue.className} fontSize={26}>
               Illa Laila
             </Typography>
-            <Box>
-              <Button onClick={onOpenInvitation}>
-                <CardGiftcardRoundedIcon /> &nbsp; Buka Undangan
-              </Button>
-            </Box>
+            {!isOpenedInvitation && (
+              <Box>
+                <Button onClick={onOpenInvitation}>
+                  <CardGiftcardRoundedIcon /> &nbsp; Buka Undangan
+                </Button>
+              </Box>
+            )}
             <Typography className={fonts.bodebeck.className} fontSize={12} fontWeight="bold">
               * Mohon maaf bila <br /> ada kesalahan nama dan gelar
             </Typography>

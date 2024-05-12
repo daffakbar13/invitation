@@ -21,6 +21,9 @@ const ScreenE: NextPage = () => (
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundPosition: 'bottom',
+      '> *': {
+        width: '100%',
+      },
     }}
   >
     {[
@@ -88,6 +91,15 @@ const ScreenE: NextPage = () => (
         </Stack>
       </motion.div>
     ))}
+    <Box sx={{ borderRadius: 4 }}>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d768.5168519981089!2d108.67927793415299!3d-7.407066691943143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMjQnMjUuNyJTIDEwOMKwNDAnNDYuMiJF!5e0!3m2!1sen!2sid!4v1715512034763!5m2!1sen!2sid"
+        width="600"
+        height="450"
+        style={{ width: '100%', border: 0, borderRadius: 32 }}
+        loading="lazy"
+      />
+    </Box>
   </Section>
 )
 
