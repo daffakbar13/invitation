@@ -10,13 +10,12 @@ import { useParams } from 'next/navigation'
 import React from 'react'
 
 import fonts from '@/assets/fonts'
-import images from '@/assets/images'
 import Section from '@/lib/components/Section'
 import useGlobalStore from '@/lib/hooks/useGlobalStore'
 import GuestsService from '@/lib/services/guests/guests.service'
 
 const ScreenA: NextPage = () => {
-  const { isContentLoaded, isOpenedInvitation, setActiveScreen } = useGlobalStore()
+  const { isContentLoaded, isOpenedInvitation, media, setActiveScreen } = useGlobalStore()
   const { id } = useParams()
   const detail = GuestsService.GetGuestDetail.useQuery(id as string)
 
@@ -36,7 +35,7 @@ const ScreenA: NextPage = () => {
       gap={2}
       flex={1}
       sx={{
-        backgroundImage: `url(${images.bg1.src})`,
+        backgroundImage: `url(${media.images.bg1})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center bottom',
@@ -69,7 +68,7 @@ const ScreenA: NextPage = () => {
             height={320}
             borderRadius="192px 192px 0 0"
             sx={{
-              backgroundImage: `url(${images.biru3.src})`,
+              backgroundImage: `url(${media.images.biru3})`,
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
               backgroundPosition: 'center bottom',

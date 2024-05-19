@@ -10,7 +10,7 @@ import Section from '@/lib/components/Section'
 import useGlobalStore from '@/lib/hooks/useGlobalStore'
 
 const ScreenI: NextPage = () => {
-  const { videoOpeningUrl } = useGlobalStore()
+  const { media } = useGlobalStore()
 
   React.useEffect(() => {
     const audio = document.getElementById('backsound')
@@ -70,10 +70,10 @@ const ScreenI: NextPage = () => {
         </Stack>
       </motion.div>
       <video id="opening-video" autoPlay playsInline muted style={{ height: '100vh' }}>
-        <source src={videoOpeningUrl} type="video/mp4" />
+        <source src={media.videos.opening} type="video/mp4" />
       </video>
       <audio id="backsound" autoPlay loop>
-        <source src="/audios/backsound.mp3" type="audio/mp3" />
+        <source src={media.audios.backsound} type="audio/mp3" />
       </audio>
     </Section>
   )

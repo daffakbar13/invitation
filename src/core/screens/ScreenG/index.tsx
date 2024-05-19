@@ -19,8 +19,8 @@ import { useParams } from 'next/navigation'
 import React from 'react'
 
 import fonts from '@/assets/fonts'
-import images from '@/assets/images'
 import Section from '@/lib/components/Section'
+import useGlobalStore from '@/lib/hooks/useGlobalStore'
 import GuestsService from '@/lib/services/guests/guests.service'
 import WishesService from '@/lib/services/wishes/wishes.service'
 
@@ -28,6 +28,7 @@ dayjs.extend(relativeTime)
 
 const ScreenG: NextPage = () => {
   const { id } = useParams()
+  const { media } = useGlobalStore()
   const detail = GuestsService.GetGuestDetail.useQuery(id as string)
   const wishes = WishesService.GetWishes.useQuery()
   const createWish = WishesService.CreateWish.useMutation()
@@ -47,7 +48,7 @@ const ScreenG: NextPage = () => {
       paddingX={3}
       paddingY={9}
       sx={{
-        backgroundImage: `url(${images.bg2.src})`,
+        backgroundImage: `url(${media.images.bg2})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'bottom',
@@ -67,7 +68,7 @@ const ScreenG: NextPage = () => {
           borderRadius={4}
           paddingY={5}
           sx={{
-            backgroundImage: `linear-gradient(180deg, #FFFFFF94 0%, #ffffffb5 100%), url(${images.bg3.src})`,
+            backgroundImage: `linear-gradient(180deg, #FFFFFF94 0%, #ffffffb5 100%), url(${media.images.bg3})`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'top center',
@@ -90,14 +91,14 @@ const ScreenG: NextPage = () => {
               {
                 name: 'M Daffa Raihan Akbar',
                 cardNumber: '157 053 1219',
-                logo: images.bca,
+                logo: media.images.bca,
                 isBank: true,
                 isGift: false,
               },
               {
                 name: 'Alvina Damayanti',
                 cardNumber: '0822 6243 4804',
-                logo: images.dana,
+                logo: media.images.dana,
                 isBank: false,
                 isGift: false,
               },
@@ -106,7 +107,7 @@ const ScreenG: NextPage = () => {
                 address: 'Dusun Baregbeg RT/RW 018/005, Kec. Lakbok, Kab. Ciamis',
                 cardNumber: '',
                 phoneNumber: '0822 6243 4804',
-                logo: images.dana,
+                logo: '',
                 isBank: false,
                 isGift: true,
               },
@@ -121,7 +122,7 @@ const ScreenG: NextPage = () => {
                 borderRadius={2}
                 padding={2}
                 sx={{
-                  backgroundImage: `url(${images.bgBank.src})`,
+                  backgroundImage: `url(${media.images.bgBank})`,
                   backgroundRepeat: 'no-repeat',
                   backgroundPosition: 'center right',
                   backgroundSize: 'cover',
@@ -131,12 +132,20 @@ const ScreenG: NextPage = () => {
                 {!e.isGift && (
                   <>
                     <Box alignSelf="end">
-                      <Image {...e.logo} alt="bank" style={{ height: 22, width: 'auto' }} />
+                      <Image
+                        src={e.logo}
+                        width={100}
+                        height={22}
+                        alt="bank"
+                        style={{ height: 22, width: 'auto' }}
+                      />
                     </Box>
                     <Box height={30}>
                       {e.isBank && (
                         <Image
-                          {...images.chipAtm}
+                          src={media.images.chipAtm}
+                          height={30}
+                          width={100}
                           alt="chip"
                           style={{ height: 30, width: 'auto' }}
                         />
@@ -220,7 +229,7 @@ const ScreenG: NextPage = () => {
           paddingY={5}
           paddingX={3}
           sx={{
-            backgroundImage: `linear-gradient(180deg, #FFFFFF94 0%, #ffffffb5 100%), url(${images.bg3.src})`,
+            backgroundImage: `linear-gradient(180deg, #FFFFFF94 0%, #ffffffb5 100%), url(${media.images.bg3})`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'top center',
@@ -230,7 +239,11 @@ const ScreenG: NextPage = () => {
             const target = e.target as any
             const [name, description, , status] = target
 
-            if (detail.isSuccess && [name, description, status].every((f) => f.value)) {
+            if (
+              !createWish.isLoading &&
+              detail.isSuccess &&
+              [name, description, status].every((f) => f.value)
+            ) {
               createWish.mutate(
                 [
                   {
@@ -273,7 +286,7 @@ const ScreenG: NextPage = () => {
             <MenuItem value={2}>Tidak Hadir</MenuItem>
             <MenuItem value={3}>Masih Bingung</MenuItem>
           </Select>
-          <Button fullWidth type="submit">
+          <Button fullWidth type="submit" disabled={createWish.isLoading}>
             Kirim
           </Button>
           <Stack gap={1} width="100%" borderRadius={2} maxHeight={300} overflow="scroll">

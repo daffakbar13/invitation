@@ -1,5 +1,5 @@
 'use client'
 
-import PageRahasia from '@/core/page/rahasia'
+import dynamic from 'next/dynamic'
 
-export default PageRahasia
+export default dynamic(() => import('@/core/page/rahasia'))

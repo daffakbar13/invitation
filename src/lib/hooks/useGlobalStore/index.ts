@@ -48,6 +48,38 @@ const useGlobalStore = create<UseGlobalStore>((set, get) => ({
   touchStartClientY: 0,
   previewGallery: null,
   videoOpeningUrl: '',
+  media: {
+    videos: {
+      cinematic: '/cinematic.mp4',
+      opening: '/opening.mp4',
+    },
+    audios: {
+      backsound: '/backsound.mp3',
+    },
+    images: {
+      bb: '/BB.webp',
+      bg1: '/background-1.webp',
+      bg2: '/background-2.jpg',
+      bg3: '/background-3.webp',
+      bgBank: '/bg-bank.webp',
+      biru1: '/biru_1.jpg',
+      biru2: '/biru_2.jpg',
+      biru3: '/biru_3.jpg',
+      biru4: '/biru_4.jpg',
+      biru5: '/biru_5.jpg',
+      bca: '/bca.png',
+      biruLandscape: '/biru_landscape.jpg',
+      chipAtm: '/chip-atm.png',
+      dana: '/dana.png',
+      jawa1: '/jawa_1.jpg',
+      jawa2: '/jawa_2.jpg',
+      jawa3: '/jawa_3.jpg',
+      jawa4: '/jawa_4.jpg',
+      jawaLandscape: '/jawa_landscape.jpg',
+      jawaAlvina: '/jawa-alvina.jpeg',
+      jawaDaffa: '/jawa-daffa.jpg',
+    },
+  },
   setContentLoaded(isContentLoaded) {
     set({ isContentLoaded })
   },
@@ -94,13 +126,19 @@ const useGlobalStore = create<UseGlobalStore>((set, get) => ({
       onChangeActiveScreen(touchStartClientY > clientY)
     }
   },
-  openPreviewGallery(img) {
+  openPreviewGallery(previewGallery) {
     return () => {
-      set({ previewGallery: img })
+      set({ previewGallery })
     }
   },
   closePreviewGallery() {
     set({ previewGallery: null })
+  },
+  setMedia(folder, file, url) {
+    const media = get().media as any
+
+    media[folder][file] = url
+    set({ media })
   },
 }))
 

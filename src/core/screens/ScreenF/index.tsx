@@ -4,11 +4,10 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { motion } from 'framer-motion'
 import { NextPage } from 'next'
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import React from 'react'
 
 import fonts from '@/assets/fonts'
-import images from '@/assets/images'
 import Section from '@/lib/components/Section'
 import useGlobalStore from '@/lib/hooks/useGlobalStore'
 
@@ -19,19 +18,18 @@ const Card = ({ children }: React.PropsWithChildren) => (
 )
 
 const ScreenF: NextPage = () => {
-  const { previewGallery, openPreviewGallery, closePreviewGallery } = useGlobalStore()
+  const { previewGallery, media, openPreviewGallery, closePreviewGallery } = useGlobalStore()
 
-  const renderImages = (...images: StaticImageData[]) =>
+  const renderImages = (isLandscape: boolean, ...images: string[]) =>
     images.map((img, i) => (
       <Card key={i}>
         <Image
-          src={img.src}
-          height={img.height}
-          width={img.width}
-          blurDataURL={img.blurDataURL}
+          src={img}
+          height={100}
+          width={100}
           alt={'gallery'}
           quality={1}
-          style={{ ...(img.src.includes('landscape') && { aspectRatio: 'unset' }) }}
+          style={{ ...(isLandscape && { aspectRatio: 'unset' }) }}
           onClick={openPreviewGallery(img)}
         />
       </Card>
@@ -44,7 +42,7 @@ const ScreenF: NextPage = () => {
       paddingX={2}
       paddingY={4}
       sx={{
-        backgroundImage: `linear-gradient(180deg, #FFFFFF94 0%, #ffffffb5 100%), url(${images.bg3.src})`,
+        backgroundImage: `linear-gradient(180deg, #FFFFFF94 0%, #ffffffb5 100%), url(${media.images.bg3})`,
         backgroundRepeat: 'repeat-y',
         backgroundPosition: 'bottom center',
       }}
@@ -79,24 +77,25 @@ const ScreenF: NextPage = () => {
           },
         }}
       >
-        <Box display="flex">{renderImages(images.biru1, images.biru2)}</Box>
+        <Box display="flex">{renderImages(false, media.images.biru1, media.images.biru2)}</Box>
         <Box display="flex" flexBasis="30%">
-          {renderImages(images.biruLandscape)}
+          {renderImages(true, media.images.biruLandscape)}
         </Box>
-        <Box display="flex">{renderImages(images.biru3, images.biru4, images.biru5)}</Box>
-        <Box display="flex">{renderImages(images.jawa1, images.jawa2)}</Box>
+        <Box display="flex">
+          {renderImages(false, media.images.biru3, media.images.biru4, media.images.biru5)}
+        </Box>
+        <Box display="flex">{renderImages(false, media.images.jawa1, media.images.jawa2)}</Box>
         <Box display="flex" flexBasis="40%">
-          {renderImages(images.jawaLandscape)}
+          {renderImages(true, media.images.jawaLandscape)}
         </Box>
-        <Box display="flex">{renderImages(images.jawa3, images.jawa4)}</Box>
+        <Box display="flex">{renderImages(false, media.images.jawa3, media.images.jawa4)}</Box>
       </Stack>
       <Dialog open={previewGallery !== null} fullWidth onClose={closePreviewGallery}>
         {previewGallery && (
           <Image
-            src={previewGallery.src}
-            height={previewGallery.height}
-            width={previewGallery.width}
-            blurDataURL={previewGallery.blurDataURL}
+            src={previewGallery}
+            height={100}
+            width={100}
             alt={'gallery'}
             quality={10}
             style={{ width: '100%', height: 'auto' }}
