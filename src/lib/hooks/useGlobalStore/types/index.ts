@@ -4,17 +4,21 @@ import { NextComponentType, NextPage } from 'next'
 import { StaticImageData } from 'next/image'
 
 interface States {
+  isContentLoaded: boolean
   isOpenedInvitation: boolean
   isFullScreen: boolean
   Screens: { title: string; Component: NextPage; Icon: NextComponentType }[]
   activeScreen: number
   touchStartClientY: number
   previewGallery: null | StaticImageData
+  videoOpeningUrl: string
 }
 
 interface Mutations {
+  setContentLoaded(isContentLoaded: boolean): void
   openInvitation(): void
   closeInvitation(): void
+  setVideoOpeningUrl(url: string): void
   setIsFullScreen(isFullScreen: boolean): void
   setActiveScreen(activeScreen: number): void
   onChangeActiveScreen(toNext: boolean): void

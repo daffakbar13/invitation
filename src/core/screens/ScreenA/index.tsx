@@ -1,19 +1,24 @@
 import CardGiftcardRoundedIcon from '@mui/icons-material/CardGiftcardRounded'
+import { CircularProgress } from '@mui/material'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { motion } from 'framer-motion'
 import { NextPage } from 'next'
+import { useParams } from 'next/navigation'
 import React from 'react'
 
 import fonts from '@/assets/fonts'
 import images from '@/assets/images'
 import Section from '@/lib/components/Section'
 import useGlobalStore from '@/lib/hooks/useGlobalStore'
+import GuestsService from '@/lib/services/guests/guests.service'
 
 const ScreenA: NextPage = () => {
-  const { isOpenedInvitation, setActiveScreen } = useGlobalStore()
+  const { isContentLoaded, isOpenedInvitation, setActiveScreen } = useGlobalStore()
+  const { id } = useParams()
+  const detail = GuestsService.GetGuestDetail.useQuery(id as string)
 
   function onOpenInvitation() {
     if (document.body.requestFullscreen) {
@@ -35,9 +40,6 @@ const ScreenA: NextPage = () => {
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center bottom',
-        ...(isOpenedInvitation && {
-          minHeight: '100vh',
-        }),
       }}
     >
       <Box
@@ -95,15 +97,16 @@ const ScreenA: NextPage = () => {
               Bapak/Ibu/Saudara/i
             </Typography>
             <Typography className={fonts.analogue.className} fontSize={26}>
-              Illa Laila
+              {detail.data?.name}
             </Typography>
-            {!isOpenedInvitation && (
-              <Box>
-                <Button onClick={onOpenInvitation}>
-                  <CardGiftcardRoundedIcon /> &nbsp; Buka Undangan
-                </Button>
-              </Box>
-            )}
+            <Box>
+              <Button onClick={onOpenInvitation}>
+                <CardGiftcardRoundedIcon /> &nbsp; Buka Undangan &nbsp;
+                {!isContentLoaded && isOpenedInvitation && (
+                  <CircularProgress size={12} color="warning" />
+                )}
+              </Button>
+            </Box>
             <Typography className={fonts.bodebeck.className} fontSize={12} fontWeight="bold">
               * Mohon maaf bila <br /> ada kesalahan nama dan gelar
             </Typography>

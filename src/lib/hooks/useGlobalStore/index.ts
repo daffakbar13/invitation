@@ -4,6 +4,7 @@ import { create } from 'zustand'
 import UseGlobalStore from './types'
 
 const useGlobalStore = create<UseGlobalStore>((set, get) => ({
+  isContentLoaded: false,
   isOpenedInvitation: false,
   isFullScreen: false,
   Screens: [
@@ -46,11 +47,18 @@ const useGlobalStore = create<UseGlobalStore>((set, get) => ({
   activeScreen: 0,
   touchStartClientY: 0,
   previewGallery: null,
+  videoOpeningUrl: '',
+  setContentLoaded(isContentLoaded) {
+    set({ isContentLoaded })
+  },
   openInvitation() {
     set({ isOpenedInvitation: true })
   },
   closeInvitation() {
     set({ isOpenedInvitation: false })
+  },
+  setVideoOpeningUrl(videoOpeningUrl) {
+    set({ videoOpeningUrl })
   },
   setIsFullScreen(isFullScreen) {
     set({ isFullScreen })

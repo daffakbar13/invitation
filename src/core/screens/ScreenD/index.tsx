@@ -40,7 +40,7 @@ const ScreenD: NextPage = () => {
     const videos = document.getElementsByTagName('video')
 
     // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < videos.length; i++) {
+    for (let i = 1; i < videos.length; i++) {
       const vid = videos[i]
       vid.addEventListener('ended', () => vid.play(), true)
     }

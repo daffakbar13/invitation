@@ -1,9 +1,20 @@
-import { MongoClient } from 'mongodb'
+import { Db, MongoClient } from 'mongodb'
+
+let isConnected = false
+let db: Db
+
+const client = new MongoClient(String(process.env.NEXT_PUBLIC_MONGODB_URL))
 
 export default async function database() {
-  const client = new MongoClient(String(process.env.NEXT_PUBLIC_MONGODB_URL))
+  if (!isConnected) {
+    await client.connect().then(() => {
+      isConnected = true
+    })
+  }
 
-  await client.connect()
+  if (!db) {
+    db = client.db('invitation')
+  }
 
-  return client.db('invitation')
+  return db
 }
