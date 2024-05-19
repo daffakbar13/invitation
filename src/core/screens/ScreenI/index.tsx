@@ -1,4 +1,5 @@
 import ArrowDownwardRoundedIcon from '@mui/icons-material/ArrowDownwardRounded'
+import PauseCircleFilledRoundedIcon from '@mui/icons-material/PauseCircleFilledRounded'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { motion } from 'framer-motion'
@@ -70,9 +71,38 @@ const ScreenI: NextPage = () => {
       >
         <source src={media.videos.opening} type="video/mp4" />
       </video>
-      <audio id="backsound" src={media.audios.backsound} autoPlay loop>
-        <source src={media.audios.backsound} type="audio/mp3" />
-      </audio>
+      <Stack
+        justifyContent="center"
+        alignItems="center"
+        position="fixed"
+        bottom={24}
+        right={24}
+        padding={1}
+        borderRadius={4}
+        zIndex={999}
+        bgcolor="primary.main"
+      >
+        <motion.div
+          style={{ width: 20, height: 20 }}
+          initial={{ transform: 'rotate(0deg)' }}
+          animate={{ transform: 'rotate(360deg)' }}
+          transition={{ duration: 3, repeat: Infinity }}
+        >
+          <PauseCircleFilledRoundedIcon
+            color="error"
+            onClick={() => {
+              const audio = document.querySelector('audio')
+              if (audio) {
+                if (audio.paused) {
+                  audio.play()
+                } else {
+                  audio.pause()
+                }
+              }
+            }}
+          />
+        </motion.div>
+      </Stack>
     </Section>
   )
 }
