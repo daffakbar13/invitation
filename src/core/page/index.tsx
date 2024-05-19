@@ -62,6 +62,9 @@ const Page: NextPage = () => {
           <ScreenH />
         </>
       )}
+      <audio id="backsound" src={media.audios.backsound} autoPlay loop>
+        <source src={media.audios.backsound} type="audio/mp3" />
+      </audio>
     </Stack>
   )
 }

@@ -25,6 +25,12 @@ const ScreenA: NextPage = () => {
         .requestFullscreen()
         .catch(console.error)
         .finally(() => setActiveScreen(1))
+      const audio = document.getElementById('backsound') as any
+      try {
+        audio.play()
+      } catch (err) {
+        console.error(err)
+      }
     } else {
       setActiveScreen(1)
     }

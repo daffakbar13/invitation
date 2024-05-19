@@ -12,14 +12,6 @@ import useGlobalStore from '@/lib/hooks/useGlobalStore'
 const ScreenI: NextPage = () => {
   const { media } = useGlobalStore()
 
-  React.useEffect(() => {
-    const audio = document.getElementById('backsound')
-
-    if (audio) {
-      audio.addEventListener('ended', () => (audio as any).play(), true)
-    }
-  }, [])
-
   return (
     <Section>
       <motion.div
@@ -69,12 +61,15 @@ const ScreenI: NextPage = () => {
           </motion.div>
         </Stack>
       </motion.div>
-      <video id="opening-video" autoPlay playsInline muted style={{ height: '100vh' }}>
+      <video
+        id="opening-video"
+        autoPlay
+        playsInline
+        muted
+        style={{ height: '100vh', pointerEvents: 'none' }}
+      >
         <source src={media.videos.opening} type="video/mp4" />
       </video>
-      <audio id="backsound" autoPlay loop>
-        <source src={media.audios.backsound} type="audio/mp3" />
-      </audio>
     </Section>
   )
 }
