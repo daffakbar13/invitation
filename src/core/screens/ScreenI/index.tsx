@@ -70,6 +70,9 @@ const ScreenI: NextPage = () => {
       >
         <source src={media.videos.opening} type="video/mp4" />
       </video>
+      <audio id="backsound" src={media.audios.backsound} autoPlay loop>
+        <source src={media.audios.backsound} type="audio/mp3" />
+      </audio>
     </Section>
   )
 }

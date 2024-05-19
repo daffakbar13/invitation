@@ -25,8 +25,8 @@ const Page: NextPage = () => {
     Promise.all(
       Object.keys(media).map((folder) =>
         Promise.all(
-          Object.entries((media as any)[folder]).map(([fileKey, fileName]) =>
-            fetch(`/${folder}${fileName}`, {
+          Object.entries((media as any)[folder]).map(([fileKey, file]) =>
+            fetch(file as string, {
               cache: 'force-cache',
               next: { revalidate: 60 * 60 * 24 },
             })
@@ -62,9 +62,6 @@ const Page: NextPage = () => {
           <ScreenH />
         </>
       )}
-      <audio id="backsound" src={media.audios.backsound} autoPlay loop>
-        <source src={media.audios.backsound} type="audio/mp3" />
-      </audio>
     </Stack>
   )
 }
