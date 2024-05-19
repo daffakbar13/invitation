@@ -29,9 +29,9 @@ const Page: NextPage = () => {
             fetch(`/${folder}${fileName}`, {
               cache: 'force-cache',
               next: { revalidate: 60 * 60 * 24 },
-            }).then(async (res) => {
-              setMedia(folder, fileKey, URL.createObjectURL(await res.blob()))
-            }),
+            })
+              .then((res) => res.blob())
+              .then((blob) => setMedia(folder, fileKey, URL.createObjectURL(blob))),
           ),
         ),
       ),

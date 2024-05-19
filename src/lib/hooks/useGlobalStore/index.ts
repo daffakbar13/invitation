@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic'
 import { create } from 'zustand'
 
 import UseGlobalStore from './types'
@@ -7,43 +6,7 @@ const useGlobalStore = create<UseGlobalStore>((set, get) => ({
   isContentLoaded: false,
   isOpenedInvitation: false,
   isFullScreen: false,
-  Screens: [
-    {
-      title: 'Home',
-      Component: dynamic(() => import('@/core/screens/ScreenA')),
-      Icon: dynamic(() => import('@mui/icons-material/HomeRounded')),
-    },
-    {
-      title: 'Surah',
-      Component: dynamic(() => import('@/core/screens/ScreenC')),
-      Icon: dynamic(() => import('@mui/icons-material/FormatQuoteRounded')),
-    },
-    {
-      title: 'Mempelai',
-      Component: dynamic(() => import('@/core/screens/ScreenB')),
-      Icon: dynamic(() => import('@mui/icons-material/FavoriteRounded')),
-    },
-    {
-      title: 'Waktu',
-      Component: dynamic(() => import('@/core/screens/ScreenD')),
-      Icon: dynamic(() => import('@mui/icons-material/HourglassEmptyRounded')),
-    },
-    {
-      title: 'Acara',
-      Component: dynamic(() => import('@/core/screens/ScreenE')),
-      Icon: dynamic(() => import('@mui/icons-material/CalendarMonthRounded')),
-    },
-    {
-      title: 'Galeri',
-      Component: dynamic(() => import('@/core/screens/ScreenF')),
-      Icon: dynamic(() => import('@mui/icons-material/CollectionsRounded')),
-    },
-    {
-      title: 'Galeri',
-      Component: dynamic(() => import('@/core/screens/ScreenG')),
-      Icon: dynamic(() => import('@mui/icons-material/CollectionsRounded')),
-    },
-  ],
+  Screens: [],
   activeScreen: 0,
   touchStartClientY: 0,
   previewGallery: null,
