@@ -19,6 +19,12 @@ namespace WishesService {
   }
 
   CreateWish.useMutation = createMutation(CreateWish)
+
+  export async function DeleteWish(id: string) {
+    return service.delete<null, boolean>(`/${id}`)
+  }
+
+  DeleteWish.useMutation = createMutation(DeleteWish)
 }
 
 export default WishesService

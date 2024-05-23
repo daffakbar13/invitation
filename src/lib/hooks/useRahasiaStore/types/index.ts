@@ -8,6 +8,7 @@ interface States {
   isOpenModalAddGuest: boolean
   editGuestId: string
   deleteGuestId: string
+  deleteWishId: string
 }
 
 interface Mutations {
@@ -18,6 +19,7 @@ interface Mutations {
   handleDeleteGroup(deleteGroupId: string): () => void
   handleEditGuest(editGuestId: string): () => void
   handleDeleteGuest(deleteGuestId: string): () => void
+  handleDeleteWish(deleteWishId: string): () => void
 }
 
 export default interface UseRahasiaStore extends States, Mutations {}

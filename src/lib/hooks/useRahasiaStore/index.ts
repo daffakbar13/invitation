@@ -10,6 +10,7 @@ const useRahasiaStore = create<UseRahasiaStore>((set) => ({
   deleteGroupId: '',
   editGuestId: '',
   deleteGuestId: '',
+  deleteWishId: '',
   toggleModalAddGroup() {
     set((state) => ({ isOpenModalAddGroup: !state.isOpenModalAddGroup }))
   },
@@ -30,6 +31,9 @@ const useRahasiaStore = create<UseRahasiaStore>((set) => ({
   },
   handleDeleteGuest(deleteGuestId) {
     return () => set({ deleteGuestId })
+  },
+  handleDeleteWish(deleteWishId) {
+    return () => set({ deleteWishId })
   },
 }))
 
