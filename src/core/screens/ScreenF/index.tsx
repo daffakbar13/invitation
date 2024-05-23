@@ -84,11 +84,13 @@ const ScreenF: NextPage = () => {
         <Box display="flex">
           {renderImages(false, media.images.biru3, media.images.biru4, media.images.biru5)}
         </Box>
-        <Box display="flex">{renderImages(false, media.images.jawa1, media.images.jawa2)}</Box>
+        <Box display="flex">{renderImages(false, media.images.jawa4, media.images.jawa5)}</Box>
         <Box display="flex" flexBasis="40%">
           {renderImages(true, media.images.jawaLandscape)}
         </Box>
-        <Box display="flex">{renderImages(false, media.images.jawa3, media.images.jawa4)}</Box>
+        <Box display="flex">
+          {renderImages(false, media.images.jawa2, media.images.jawa1, media.images.jawa3)}
+        </Box>
       </Stack>
       <Dialog open={previewGallery !== null} fullWidth onClose={closePreviewGallery}>
         {previewGallery && (

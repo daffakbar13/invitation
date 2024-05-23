@@ -30,6 +30,7 @@ interface Media {
     jawa2: string
     jawa3: string
     jawa4: string
+    jawa5: string
     jawaLandscape: string
     jawaAlvina: string
     jawaDaffa: string

@@ -88,8 +88,8 @@ const ScreenB: NextPage = () => {
               >
                 <Stack key={i} width="100%" alignItems="center" gap={2}>
                   <Box
-                    width={140}
-                    height={180}
+                    width={210}
+                    height={270}
                     borderRadius={1}
                     padding={0.5}
                     boxShadow="0px 0px 6px 0px rgba(0,0,0,0.5)"
@@ -101,8 +101,8 @@ const ScreenB: NextPage = () => {
                       sx={{
                         backgroundImage: `url(${media.images[i ? 'jawaDaffa' : 'jawaAlvina']})`,
                         backgroundRepeat: 'no-repeat',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'bottom center',
+                        backgroundSize: '150%',
+                        backgroundPosition: isMale ? 'center' : '60% 80%',
                       }}
                     ></Box>
                   </Box>
