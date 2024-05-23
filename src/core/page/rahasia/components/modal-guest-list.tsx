@@ -2,6 +2,7 @@
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded'
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded'
 import EditRoundedIcon from '@mui/icons-material/EditRounded'
+import LibraryAddCheckRoundedIcon from '@mui/icons-material/LibraryAddCheckRounded'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
@@ -33,6 +34,7 @@ const ModalGuestList: React.FC = () => {
     handleViewGroup,
     handleEditGuest,
     handleDeleteGuest,
+    copyTextShareInvitation,
   } = useRahasiaStore()
   const groups = GuestGroupsService.GetGuestGroups.useQuery()
   const guests = GuestsService.GetGuests.useQuery(viewGroupId)
@@ -40,12 +42,23 @@ const ModalGuestList: React.FC = () => {
   const updateGuest = GuestsService.UpdateGuest.useMutation()
   const deleteGuest = GuestsService.DeleteGuest.useMutation()
   const [searchKey, setSearchKey] = React.useState('')
+  const [copyIndex, setCopyIndex] = React.useState(-1)
 
   React.useEffect(() => {
     if (viewGroupId) {
       guests.refetch()
     }
   }, [viewGroupId])
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      setCopyIndex(-1)
+    }, 3000)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [copyIndex])
 
   return (
     <Dialog open={Boolean(viewGroupId)} onClose={handleViewGroup('')}>
@@ -90,14 +103,17 @@ const ModalGuestList: React.FC = () => {
                       </TableCell>
                       <TableCell component="th" scope="row">
                         <Box display="flex" gap={1}>
-                          <ContentCopyRoundedIcon
-                            color="primary"
-                            onClick={() =>
-                              navigator.clipboard?.writeText(
-                                `${window.location.origin}/${guest.id}`,
-                              )
-                            }
-                          />
+                          {copyIndex === i ? (
+                            <LibraryAddCheckRoundedIcon />
+                          ) : (
+                            <ContentCopyRoundedIcon
+                              color="primary"
+                              onClick={() => {
+                                copyTextShareInvitation(guest.id)
+                                setCopyIndex(i)
+                              }}
+                            />
+                          )}
                           <EditRoundedIcon onClick={handleEditGuest(guest.id)} />
                           <DeleteRoundedIcon color="error" onClick={handleDeleteGuest(guest.id)} />
                         </Box>

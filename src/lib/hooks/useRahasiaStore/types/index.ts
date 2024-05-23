@@ -20,6 +20,7 @@ interface Mutations {
   handleEditGuest(editGuestId: string): () => void
   handleDeleteGuest(deleteGuestId: string): () => void
   handleDeleteWish(deleteWishId: string): () => void
+  copyTextShareInvitation(guestId: string): void
 }
 
 export default interface UseRahasiaStore extends States, Mutations {}

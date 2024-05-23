@@ -35,6 +35,29 @@ const useRahasiaStore = create<UseRahasiaStore>((set) => ({
   handleDeleteWish(deleteWishId) {
     return () => set({ deleteWishId })
   },
+  copyTextShareInvitation(guestId) {
+    navigator.clipboard?.writeText(`_Bismillahirrahmanirrahim_
+
+*Assalamau'alaikum Wr. Wb.*
+    
+Dengan ungkapan syukur atas karunia Allah SWT, perkenankan kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami
+    
+*Alvina & Daffa*
+    
+Yang insyaAllah akan dilaksanakan pada :
+    
+*RABU, 12 JUNI 2024*
+    
+Berikut link undangan kami sampaikan
+    
+${window.location.origin}/${guestId}
+    
+Merupakan suatu kebahagiaan dan kehormatan bagi kami, apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan do'a restu.
+    
+Atas kehadiran dan do'a restunya kami ucapkan terimakasih.
+    
+*Wassalamau'alaikum Wr. Wb.*`)
+  },
 }))
 
 export default useRahasiaStore

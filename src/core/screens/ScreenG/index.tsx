@@ -35,10 +35,12 @@ const ScreenG: NextPage = () => {
   const [copyIndex, setCopyIndex] = React.useState(-1)
 
   React.useEffect(() => {
-    if (copyIndex >= 0) {
-      setTimeout(() => {
-        setCopyIndex(-1)
-      }, 3000)
+    const timeout = setTimeout(() => {
+      setCopyIndex(-1)
+    }, 3000)
+
+    return () => {
+      clearTimeout(timeout)
     }
   }, [copyIndex])
 
