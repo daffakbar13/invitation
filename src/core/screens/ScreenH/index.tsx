@@ -15,7 +15,7 @@ const ScreenH: NextPage = () => {
   return (
     <Section>
       <motion.div
-        initial={{ opacity: 0.3 }}
+        initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1.2 }}
       >
@@ -40,7 +40,13 @@ const ScreenH: NextPage = () => {
             sx={{ backgroundImage: 'linear-gradient(180deg, #EAF0F400 30%, #EAF0F4 89%)' }}
           />
           <Typography className={fonts.laluxe.className} fontSize={40} color="#D8AF6F" zIndex={2}>
-            Terimakasih
+            <motion.div
+              initial={{ translateY: -100 }}
+              whileInView={{ translateY: 0 }}
+              transition={{ duration: 1.2 }}
+            >
+              Terimakasih
+            </motion.div>
           </Typography>
         </Stack>
         <Stack
@@ -70,12 +76,24 @@ const ScreenH: NextPage = () => {
             fontWeight="500"
             zIndex={2}
           >
-            Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/Ibu/Saudara/i
-            berkenan hadir dan memberikan doa restu. Atas kehadiran dan doa restunya, kami
-            mengucapkan terima kasih.
+            <motion.div
+              initial={{ scale: 0.8 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 1.2 }}
+            >
+              Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/Ibu/Saudara/i
+              berkenan hadir dan memberikan doa restu. Atas kehadiran dan doa restunya, kami
+              mengucapkan terima kasih.
+            </motion.div>
           </Typography>
           <Typography className={fonts.analogue.className} fontSize={35} zIndex={2}>
-            Alvina & Daffa
+            <motion.div
+              initial={{ translateY: 50 }}
+              whileInView={{ translateY: 0 }}
+              transition={{ duration: 1.2 }}
+            >
+              Alvina & Daffa
+            </motion.div>
           </Typography>
         </Stack>
       </motion.div>

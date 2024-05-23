@@ -35,8 +35,8 @@ const ScreenE: NextPage = () => {
       ].map((e, i) => (
         <motion.div
           key={i}
-          initial={{ opacity: 0.3 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, translateY: i ? 100 : -100 }}
+          whileInView={{ opacity: 1, translateY: 0 }}
           transition={{ duration: 1.2 }}
         >
           <Stack
@@ -53,43 +53,85 @@ const ScreenE: NextPage = () => {
               backgroundPosition: 'top center',
             }}
           >
-            <Typography
-              className={fonts.analogue.className}
-              color="#D5AF6F"
-              fontSize={38}
-              sx={{ textShadow: '1px 1px 1px white' }}
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 1.2 }}
             >
-              {e.title}
-            </Typography>
-            <Typography className={fonts.bodebeck.className} fontSize={15} fontWeight="bold">
-              Rabu
-            </Typography>
-            <Typography
-              className={fonts.analogue.className}
-              color="#D5AF6F"
-              fontSize={59}
-              sx={{ textShadow: '1px 1px 1px white' }}
+              <Typography
+                className={fonts.analogue.className}
+                color="#D5AF6F"
+                fontSize={38}
+                sx={{ textShadow: '1px 1px 1px white' }}
+              >
+                {e.title}
+              </Typography>
+            </motion.div>
+            <motion.div
+              initial={{ translateX: 20 }}
+              whileInView={{ translateX: 0 }}
+              transition={{ duration: 1.2 }}
             >
-              12
-            </Typography>
-            <Typography className={fonts.newsReader.className} fontSize={15}>
-              Juni 2024
-            </Typography>
-            <Typography
-              className={fonts.bodebeck.className}
-              fontSize={13}
-              fontWeight="bold"
-              marginY={1}
+              <Typography className={fonts.bodebeck.className} fontSize={15} fontWeight="bold">
+                Rabu
+              </Typography>
+            </motion.div>
+            <motion.div
+              initial={{ translateY: -20 }}
+              whileInView={{ translateY: 0 }}
+              transition={{ duration: 1.2 }}
             >
-              Pukul: {e.startTime} - {e.endTime}
-            </Typography>
+              <Typography
+                className={fonts.analogue.className}
+                color="#D5AF6F"
+                fontSize={59}
+                sx={{ textShadow: '1px 1px 1px white' }}
+              >
+                12
+              </Typography>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.2 }}
+            >
+              <Typography className={fonts.newsReader.className} fontSize={15}>
+                Juni 2024
+              </Typography>
+            </motion.div>
+            <motion.div
+              initial={{ translateY: 20 }}
+              whileInView={{ translateY: 0 }}
+              transition={{ duration: 1.2 }}
+            >
+              <Typography
+                className={fonts.bodebeck.className}
+                fontSize={13}
+                fontWeight="bold"
+                marginY={1}
+              >
+                Pukul: {e.startTime} - {e.endTime}
+              </Typography>
+            </motion.div>
             <Box width="50%">
-              <Divider sx={{ '::before, ::after': { borderColor: 'primary.main' } }}>
-                <PlaceIcon sx={{ fontSize: 28 }} />
-              </Divider>
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{ duration: 1.2 }}
+              >
+                <Divider sx={{ '::before, ::after': { borderColor: 'primary.main' } }}>
+                  <PlaceIcon sx={{ fontSize: 28 }} />
+                </Divider>
+              </motion.div>
             </Box>
             <Typography className={fonts.bodebeck.className} fontWeight="600" width="80%">
-              Dusun Baregbeg, RT/RW 018/005, Kec. Lakbok, Kab. Ciamis
+              <motion.div
+                initial={{ translateY: 20 }}
+                whileInView={{ translateY: 0 }}
+                transition={{ duration: 1.2 }}
+              >
+                Dusun Baregbeg, RT/RW 018/005, Kec. Lakbok, Kab. Ciamis
+              </motion.div>
             </Typography>
           </Stack>
         </motion.div>

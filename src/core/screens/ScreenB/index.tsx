@@ -106,25 +106,37 @@ const ScreenB: NextPage = () => {
                       }}
                     ></Box>
                   </Box>
-                  <Typography className={fonts.analogue.className} fontSize={30} marginTop={2}>
-                    {current.fullName}
-                  </Typography>
-                  <Box>
-                    <Typography className={fonts.bodebeck.className} fontWeight="bold">
-                      {isMale ? 'Putra' : 'Putri'} ke - {current.childOrder}
+                  <motion.div
+                    initial={{ translateX: i ? -100 : 100 }}
+                    whileInView={{ translateX: 0 }}
+                    transition={{ duration: 1.2 }}
+                  >
+                    <Typography className={fonts.analogue.className} fontSize={30} marginTop={2}>
+                      {current.fullName}
                     </Typography>
-                    <Typography className={fonts.bodebeck.className} fontWeight="bold">
-                      {(['father', 'mother'] as const)
-                        .map((parent) => {
-                          const { isAlm, name } = current[parent]
-                          const isFather = parent === 'father'
-                          return [isAlm ? '(Alm.)' : null, isFather ? 'Bpk.' : 'Ibu', name].join(
-                            ' ',
-                          )
-                        })
-                        .join(' & ')}
-                    </Typography>
-                  </Box>
+                  </motion.div>
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 1.2 }}
+                  >
+                    <Box>
+                      <Typography className={fonts.bodebeck.className} fontWeight="bold">
+                        {isMale ? 'Putra' : 'Putri'} ke - {current.childOrder}
+                      </Typography>
+                      <Typography className={fonts.bodebeck.className} fontWeight="bold">
+                        {(['father', 'mother'] as const)
+                          .map((parent) => {
+                            const { isAlm, name } = current[parent]
+                            const isFather = parent === 'father'
+                            return [isAlm ? '(Alm.)' : '', isFather ? 'Bpk.' : 'Ibu', name].join(
+                              ' ',
+                            )
+                          })
+                          .join(' & ')}
+                      </Typography>
+                    </Box>
+                  </motion.div>
                   <Box
                     height={36}
                     padding={1}

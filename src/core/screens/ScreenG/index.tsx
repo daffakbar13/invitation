@@ -56,7 +56,7 @@ const ScreenG: NextPage = () => {
       }}
     >
       <motion.div
-        initial={{ opacity: 0.3 }}
+        initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1.2 }}
       >
@@ -80,11 +80,23 @@ const ScreenG: NextPage = () => {
             fontSize={32}
             sx={{ textShadow: '1px 1px 1px white' }}
           >
-            Wedding Gift
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 1.2 }}
+            >
+              Wedding Gift
+            </motion.div>
           </Typography>
           <Typography className={fonts.bodebeck.className} fontWeight="bold" maxWidth="80%">
-            Doa Restu Anda merupakan karunia yang sangat berarti bagi kami. Dan jika memberi adalah
-            ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.
+            <motion.div
+              initial={{ translateY: 100 }}
+              whileInView={{ translateY: 0 }}
+              transition={{ duration: 1.2 }}
+            >
+              Doa Restu Anda merupakan karunia yang sangat berarti bagi kami. Dan jika memberi
+              adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.
+            </motion.div>
           </Typography>
           <Stack gap={2} alignItems="center">
             {[
@@ -112,110 +124,116 @@ const ScreenG: NextPage = () => {
                 isGift: true,
               },
             ].map((e, i) => (
-              <Stack
+              <motion.div
                 key={i}
-                height={172}
-                width="85%"
-                justifyContent="center"
-                alignItems={e.isGift ? 'center' : 'start'}
-                border="1px solid white"
-                borderRadius={2}
-                padding={2}
-                sx={{
-                  backgroundImage: `url(${media.images.bgBank})`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center right',
-                  backgroundSize: 'cover',
-                  boxShadow: (theme) => theme.shadows[4],
-                }}
+                style={{ width: '85%' }}
+                initial={{ opacity: 0, translateX: i % 2 === 0 ? -100 : 100 }}
+                whileInView={{ opacity: 1, translateX: 0 }}
+                transition={{ duration: 1.2 }}
               >
-                {!e.isGift && (
-                  <>
-                    <Box alignSelf="end">
-                      <Image
-                        src={e.logo}
-                        width={100}
-                        height={22}
-                        alt="bank"
-                        style={{ height: 22, width: 'auto' }}
-                      />
-                    </Box>
-                    <Box height={30}>
-                      {e.isBank && (
+                <Stack
+                  height={172}
+                  justifyContent="center"
+                  alignItems={e.isGift ? 'center' : 'start'}
+                  border="1px solid white"
+                  borderRadius={2}
+                  padding={2}
+                  sx={{
+                    backgroundImage: `url(${media.images.bgBank})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center right',
+                    backgroundSize: 'cover',
+                    boxShadow: (theme) => theme.shadows[4],
+                  }}
+                >
+                  {!e.isGift && (
+                    <>
+                      <Box alignSelf="end">
                         <Image
-                          src={media.images.chipAtm}
-                          height={30}
+                          src={e.logo}
                           width={100}
-                          alt="chip"
-                          style={{ height: 30, width: 'auto' }}
+                          height={22}
+                          alt="bank"
+                          style={{ height: 22, width: 'auto' }}
                         />
-                      )}
-                    </Box>
-                    <Typography className={fonts.jura.className} fontSize={15} fontWeight="bold">
-                      {e.cardNumber}
-                    </Typography>
-                    <Typography className={fonts.jura.className} fontSize={15} fontWeight="bold">
-                      {e.name}
-                    </Typography>
-                    <Box alignSelf="end" marginTop={1}>
-                      <Button
-                        size="small"
-                        onClick={() => {
-                          navigator.clipboard?.writeText(e.cardNumber.replaceAll(' ', ''))
-                          setCopyIndex(i)
-                        }}
+                      </Box>
+                      <Box height={30}>
+                        {e.isBank && (
+                          <Image
+                            src={media.images.chipAtm}
+                            height={30}
+                            width={100}
+                            alt="chip"
+                            style={{ height: 30, width: 'auto' }}
+                          />
+                        )}
+                      </Box>
+                      <Typography className={fonts.jura.className} fontSize={15} fontWeight="bold">
+                        {e.cardNumber}
+                      </Typography>
+                      <Typography className={fonts.jura.className} fontSize={15} fontWeight="bold">
+                        {e.name}
+                      </Typography>
+                      <Box alignSelf="end" marginTop={1}>
+                        <Button
+                          size="small"
+                          onClick={() => {
+                            navigator.clipboard?.writeText(e.cardNumber.replaceAll(' ', ''))
+                            setCopyIndex(i)
+                          }}
+                        >
+                          <Box display="flex" gap={0.5} alignItems="center">
+                            {copyIndex === i ? (
+                              <LibraryAddCheckRoundedIcon sx={{ fontSize: 12 }} />
+                            ) : (
+                              <ContentCopyRoundedIcon sx={{ fontSize: 12 }} />
+                            )}
+                            <Typography fontSize={10}>Salin</Typography>
+                          </Box>
+                        </Button>
+                      </Box>
+                    </>
+                  )}
+                  {e.isGift && (
+                    <>
+                      <CardGiftcardRoundedIcon sx={{ fontSize: 24 }} />
+                      <Typography fontSize={15} fontWeight="bold" marginBottom={1}>
+                        Kirim Hadiah
+                      </Typography>
+                      <Typography
+                        className={fonts.jura.className}
+                        color="black"
+                        fontSize={12}
+                        fontWeight="bold"
                       >
-                        <Box display="flex" gap={0.5} alignItems="center">
-                          {copyIndex === i ? (
-                            <LibraryAddCheckRoundedIcon sx={{ fontSize: 12 }} />
-                          ) : (
-                            <ContentCopyRoundedIcon sx={{ fontSize: 12 }} />
-                          )}
-                          <Typography fontSize={10}>Salin</Typography>
-                        </Box>
-                      </Button>
-                    </Box>
-                  </>
-                )}
-                {e.isGift && (
-                  <>
-                    <CardGiftcardRoundedIcon sx={{ fontSize: 24 }} />
-                    <Typography fontSize={15} fontWeight="bold" marginBottom={1}>
-                      Kirim Hadiah
-                    </Typography>
-                    <Typography
-                      className={fonts.jura.className}
-                      color="black"
-                      fontSize={12}
-                      fontWeight="bold"
-                    >
-                      Nama Penerima : {e.name}
-                    </Typography>
-                    <Typography
-                      className={fonts.jura.className}
-                      color="black"
-                      fontSize={12}
-                      fontWeight="bold"
-                    >
-                      No. HP : {e.name}
-                    </Typography>
-                    <Typography
-                      className={fonts.jura.className}
-                      color="black"
-                      fontSize={12}
-                      fontWeight="bold"
-                    >
-                      {e.address}
-                    </Typography>
-                  </>
-                )}
-              </Stack>
+                        Nama Penerima : {e.name}
+                      </Typography>
+                      <Typography
+                        className={fonts.jura.className}
+                        color="black"
+                        fontSize={12}
+                        fontWeight="bold"
+                      >
+                        No. HP : {e.name}
+                      </Typography>
+                      <Typography
+                        className={fonts.jura.className}
+                        color="black"
+                        fontSize={12}
+                        fontWeight="bold"
+                      >
+                        {e.address}
+                      </Typography>
+                    </>
+                  )}
+                </Stack>
+              </motion.div>
             ))}
           </Stack>
         </Stack>
       </motion.div>
       <motion.div
-        initial={{ opacity: 0.3 }}
+        initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1.2 }}
       >
@@ -265,10 +283,22 @@ const ScreenG: NextPage = () => {
             fontSize={32}
             sx={{ textShadow: '1px 1px 1px white' }}
           >
-            Wishes
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 1.2 }}
+            >
+              Wishes
+            </motion.div>
           </Typography>
           <Typography className={fonts.bodebeck.className} fontWeight="bold" maxWidth="80%">
-            Berikan ucapan harapan dan do’a kepada kedua mempelai
+            <motion.div
+              initial={{ translateY: -40 }}
+              whileInView={{ translateY: 0 }}
+              transition={{ duration: 1.2 }}
+            >
+              Berikan ucapan harapan dan do’a kepada kedua mempelai
+            </motion.div>
           </Typography>
           <TextField name="name" variant="filled" placeholder="Nama" fullWidth />
           <TextField name="description" variant="filled" placeholder="Ucapan" fullWidth multiline />
