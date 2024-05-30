@@ -109,7 +109,7 @@ const ModalGuestList: React.FC = () => {
                             <ContentCopyRoundedIcon
                               color="primary"
                               onClick={() => {
-                                copyTextShareInvitation(guest.id)
+                                copyTextShareInvitation(guest)
                                 setCopyIndex(i)
                               }}
                             />

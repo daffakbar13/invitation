@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { motion } from 'framer-motion'
 import { NextPage } from 'next'
-import { useParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 import React from 'react'
 
 import fonts from '@/assets/fonts'
@@ -17,6 +17,8 @@ import GuestsService from '@/lib/services/guests/guests.service'
 const ScreenA: NextPage = () => {
   const { isContentLoaded, isOpenedInvitation, media, setActiveScreen } = useGlobalStore()
   const { id } = useParams()
+  const params = useSearchParams()
+  const to = params.get('to')
   const detail = GuestsService.GetGuestDetail.useQuery(id as string)
 
   function onOpenInvitation() {
@@ -96,7 +98,7 @@ const ScreenA: NextPage = () => {
               Bapak/Ibu/Saudara/i
             </Typography>
             <Typography className={fonts.analogue.className} fontSize={26}>
-              {detail.data?.name}
+              {detail.data?.name || to}
             </Typography>
             <Box>
               <Button onClick={onOpenInvitation}>

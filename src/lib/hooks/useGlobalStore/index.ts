@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { create } from 'zustand'
 
 import UseGlobalStore from './types'
@@ -98,10 +99,18 @@ const useGlobalStore = create<UseGlobalStore>((set, get) => ({
   closePreviewGallery() {
     set({ previewGallery: null })
   },
-  setMedia(folder, file, url) {
-    const media = get().media as any
+  setMedia(file, url) {
+    const { media } = get()
 
-    media[folder][file] = url
+    Object.entries(media).forEach(([key, value]) => {
+      Object.entries(value).forEach(([_key, _value]) => {
+        if (_value === file) {
+          // eslint-disable-next-line no-extra-semi
+          ;((media as any)[key] as any)[_key] = url
+        }
+      })
+    })
+
     set({ media })
   },
 }))

@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 
+import GuestsDto from '@/lib/services/guests/guests.dto'
+
 interface States {
   isOpenModalAddGroup: boolean
   viewGroupId: string
@@ -20,7 +22,7 @@ interface Mutations {
   handleEditGuest(editGuestId: string): () => void
   handleDeleteGuest(deleteGuestId: string): () => void
   handleDeleteWish(deleteWishId: string): () => void
-  copyTextShareInvitation(guestId: string): void
+  copyTextShareInvitation(guest: GuestsDto.Guest): void
 }
 
 export default interface UseRahasiaStore extends States, Mutations {}

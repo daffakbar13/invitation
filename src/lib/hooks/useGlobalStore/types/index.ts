@@ -62,7 +62,7 @@ interface Mutations {
   onTouchEnd(e: React.TouchEvent<HTMLDivElement>): void
   openPreviewGallery(img: string): () => void
   closePreviewGallery(): void
-  setMedia(folder: string, file: string, url: string): void
+  setMedia(file: string, url: string): void
 }
 
 export default interface UseGlobalStore extends States, Mutations {}

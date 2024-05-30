@@ -21,20 +21,25 @@ const Page: NextPage = () => {
     e.includes('blob'),
   )
 
+  async function hitFile(file: string) {
+    if (file.includes('blob')) {
+      return Promise.resolve()
+    }
+    return fetch(file, {
+      cache: 'force-cache',
+      next: { revalidate: 60 * 60 * 24 * 30 * 12 },
+    })
+      .then((res) => res.blob())
+      .then((blob) => setMedia(file, URL.createObjectURL(blob)))
+  }
+
   React.useEffect(() => {
-    Promise.all(
-      Object.keys(media).map((folder) =>
-        Promise.all(
-          Object.entries((media as any)[folder]).map(([fileKey, file]) =>
-            fetch(file as string, {
-              cache: 'force-cache',
-              next: { revalidate: 60 * 60 * 24 },
-            })
-              .then((res) => res.blob())
-              .then((blob) => setMedia(folder, fileKey, URL.createObjectURL(blob))),
-          ),
-        ),
-      ),
+    Promise.all([media.videos.opening, media.audios.backsound].map(hitFile)).then(() =>
+      Promise.all([
+        Promise.all(Object.values(media.audios).map(hitFile)),
+        Promise.all(Object.values(media.images).map(hitFile)),
+        Promise.all(Object.values(media.videos).map(hitFile)),
+      ]),
     )
 
     document.onfullscreenchange = () => {

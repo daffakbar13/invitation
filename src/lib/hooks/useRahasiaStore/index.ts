@@ -35,7 +35,7 @@ const useRahasiaStore = create<UseRahasiaStore>((set) => ({
   handleDeleteWish(deleteWishId) {
     return () => set({ deleteWishId })
   },
-  copyTextShareInvitation(guestId) {
+  copyTextShareInvitation(guest) {
     navigator.clipboard?.writeText(`_Bismillahirrahmanirrahim_
 
 *Assalamau'alaikum Wr. Wb.*
@@ -50,7 +50,7 @@ Yang insyaAllah akan dilaksanakan pada :
     
 Berikut link undangan kami sampaikan
     
-${window.location.origin}/${guestId}
+${window.location.origin}/${guest.id}?to=${encodeURIComponent(guest.name)}
     
 Merupakan suatu kebahagiaan dan kehormatan bagi kami, apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan do'a restu.
     
