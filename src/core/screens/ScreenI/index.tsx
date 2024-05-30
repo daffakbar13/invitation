@@ -16,17 +16,6 @@ const ScreenI: NextPage = () => {
   const [isPaused, setIsPaused] = React.useState(false)
   const CdIcon = isPaused ? PlayCircleRounded : PauseCircleFilledRoundedIcon
 
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      const audio = document.querySelector('audio')
-      if (audio) {
-        setIsPaused(audio.paused)
-      }
-    }, 100)
-
-    return () => clearInterval(interval)
-  })
-
   return (
     <Section>
       <motion.div
@@ -109,8 +98,10 @@ const ScreenI: NextPage = () => {
               if (audio) {
                 if (audio.paused) {
                   audio.play()
+                  setIsPaused(false)
                 } else {
                   audio.pause()
+                  setIsPaused(true)
                 }
               }
             }}
