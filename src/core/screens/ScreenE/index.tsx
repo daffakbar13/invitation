@@ -138,7 +138,7 @@ const ScreenE: NextPage = () => {
       ))}
       <Box sx={{ borderRadius: 4 }}>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.523248986885!2d108.67718807528504!3d-7.407190672942661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e65870020c0a209%3A0xef568b5c720add22!2sRumah%20Nini%20Kariah!5e0!3m2!1sen!2sid!4v1716099652676!5m2!1sen!2sid"
+          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d989.1308032767587!2d108.6791192695827!3d-7.407194669624196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMjQnMjUuOSJTIDEwOMKwNDAnNDcuMiJF!5e0!3m2!1sen!2sid!4v1717083952504!5m2!1sen!2sid"
           width="600"
           height="450"
           style={{ width: '100%', border: 0, borderRadius: 32 }}

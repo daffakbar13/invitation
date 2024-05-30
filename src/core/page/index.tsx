@@ -34,13 +34,13 @@ const Page: NextPage = () => {
   }
 
   React.useEffect(() => {
-    Promise.all([media.videos.opening, media.audios.backsound].map(hitFile)).then(() =>
+    Promise.all([media.videos.opening, media.audios.backsound].map(hitFile)).then(() => {
       Promise.all([
         Promise.all(Object.values(media.audios).map(hitFile)),
         Promise.all(Object.values(media.images).map(hitFile)),
         Promise.all(Object.values(media.videos).map(hitFile)),
-      ]),
-    )
+      ])
+    })
 
     document.onfullscreenchange = () => {
       const isFullScreen = document.fullscreenElement !== null

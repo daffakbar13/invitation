@@ -1,5 +1,6 @@
 import ArrowDownwardRoundedIcon from '@mui/icons-material/ArrowDownwardRounded'
 import PauseCircleFilledRoundedIcon from '@mui/icons-material/PauseCircleFilledRounded'
+import PlayCircleRounded from '@mui/icons-material/PlayCircleRounded'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { motion } from 'framer-motion'
@@ -12,6 +13,19 @@ import useGlobalStore from '@/lib/hooks/useGlobalStore'
 
 const ScreenI: NextPage = () => {
   const { media } = useGlobalStore()
+  const [isPaused, setIsPaused] = React.useState(false)
+  const CdIcon = isPaused ? PlayCircleRounded : PauseCircleFilledRoundedIcon
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      const audio = document.querySelector('audio')
+      if (audio) {
+        setIsPaused(audio.paused)
+      }
+    }, 100)
+
+    return () => clearInterval(interval)
+  })
 
   return (
     <Section>
@@ -81,15 +95,15 @@ const ScreenI: NextPage = () => {
         borderRadius={4}
         zIndex={999}
         bgcolor="primary.main"
+        boxShadow={(e) => e.shadows[24]}
       >
         <motion.div
           style={{ width: 20, height: 20 }}
-          initial={{ transform: 'rotate(0deg)' }}
-          animate={{ transform: 'rotate(360deg)' }}
-          transition={{ duration: 3, repeat: Infinity }}
+          animate={{ ...(!isPaused && { transform: 'rotate(360deg)' }) }}
+          transition={{ duration: isPaused ? 0 : 3, repeat: Infinity, ease: 'linear' }}
         >
-          <PauseCircleFilledRoundedIcon
-            color="error"
+          <CdIcon
+            sx={{ color: 'white' }}
             onClick={() => {
               const audio = document.querySelector('audio')
               if (audio) {
