@@ -50,7 +50,7 @@ Yang insyaAllah akan dilaksanakan pada :
     
 Berikut link undangan kami sampaikan
     
-${window.location.origin}/${guest.id}?to=${encodeURIComponent(guest.name)}
+${window.location.origin}/${guest.id}?${new URLSearchParams({ to: guest.name })}
     
 Merupakan suatu kebahagiaan dan kehormatan bagi kami, apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan do'a restu.
     
