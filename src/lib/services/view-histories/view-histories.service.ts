@@ -11,7 +11,7 @@ namespace ViewHistoriesService {
     return service.get<null, ViewHistoriesDto.ViewHistory[]>('')
   }
 
-  GetViewHistories.useQuery = createQuery(GetViewHistories, { enabled: false })
+  GetViewHistories.useQuery = createQuery(GetViewHistories, { refetchOnMount: true })
 }
 
 export default ViewHistoriesService

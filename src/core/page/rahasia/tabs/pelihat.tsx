@@ -19,10 +19,6 @@ dayjs.extend(relativeTime)
 const TabPelihat: React.FC = () => {
   const viewers = ViewHistoriesService.GetViewHistories.useQuery()
 
-  React.useEffect(() => {
-    viewers.refetch()
-  }, [])
-
   return (
     <>
       <TableContainer component={Paper}>

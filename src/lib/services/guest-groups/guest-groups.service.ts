@@ -12,7 +12,7 @@ namespace GuestGroupsService {
     return service.get<null, GuestGroupDto.GuestGroup[]>('/')
   }
 
-  GetGuestGroups.useQuery = createQuery(GetGuestGroups)
+  GetGuestGroups.useQuery = createQuery(GetGuestGroups, { refetchOnMount: true })
 
   export async function CreateGuestGroup(payload: GuestGroupDto.CreateGuestGroup) {
     return service.post<null>('/', payload)
