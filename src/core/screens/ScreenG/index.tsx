@@ -318,7 +318,7 @@ const ScreenG: NextPage = () => {
             <MenuItem value={2}>Tidak Hadir</MenuItem>
             <MenuItem value={3}>Masih Bingung</MenuItem>
           </Select>
-          <Button fullWidth type="submit" disabled={createWish.isLoading}>
+          <Button fullWidth type="submit" disabled={createWish.isLoading || wishes.isFetching}>
             Kirim
           </Button>
           <Stack gap={1} width="100%" borderRadius={2} maxHeight={300} overflow="scroll">
