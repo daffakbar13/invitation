@@ -17,7 +17,7 @@ const PageRahasia: NextPage = () => {
   const isTabUcapan = tab === 'ucapan'
 
   return (
-    <Section justifyContent="start" alignItems="unset" gap={2} padding={2}>
+    <Section justifyContent="start" alignItems="unset" gap={2} padding={2} overflow="scroll">
       <Box display="flex" gap={1}>
         <Button {...(!isTabTamu && { variant: 'outlined' })} onClick={() => setTab('tamu')}>
           Tamu
